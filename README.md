@@ -1,9 +1,73 @@
-一些问题：
+# 🏯 CryptoTemple (大加密寺)
 
-1. 获取的钱包数据不准，比如我的钱包用了很多年了，但是提示只有 1 年 354 天
-2. ✅ 时间选择只能选择未来的时间，不能选择以后的时间
-3. ✅ 点击左上角 logo 大加密寺，可以返回首页
-4. ✅ 算完卦展示后，应该有付费功能，付费支持 ETH、USDT 和 USDC 付款，用户输入金额，收款地址为 0xe5b8988c90ca60d5f2a913cb3bd35a781ae7f242
-5. ✅ 用户付款后，可以有一个动画，就像去参拜寺庙的人，向寺庙的许愿池里投放硬币的特效。
-6. 检查 USDT 和 USDC 的合约
+> **Where Blockchain Destiny Meets Taoist Wisdom.**
+> 链上算卦，指点迷津。
 
+![Project Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![Tech Stack](https://img.shields.io/badge/Stack-React%20|%20TypeScript%20|%20Tailwind-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+## 📖 Introduction (项目介绍)
+
+**CryptoTemple** is a decentralized application (dApp) that provides a unique "On-chain Divination" experience. By connecting their Web3 wallet, users can generate a personalized fortune reading based on their unique wallet address hash.
+
+Unlike the dark, moody aesthetics often found in crypto gaming (e.g., Black Myth), CryptoTemple embraces a **traditional, auspicious (吉利)** Taoist art style, aiming to bring good fortune and peace of mind to the volatile world of cryptocurrency.
+
+**Key Features:**
+* **Immersive Entry:** Features a "Temple Descending" animation and interactive temple doors that open upon wallet connection.
+* **Address-Based Divination:** Unique algorithm that interprets wallet addresses to provide spiritual guidance.
+* **Auspicious UI:** Designed with traditional colors and motifs to evoke a sense of blessing.
+* **Donation System:** Users can offer crypto donations to the temple for good karma.
+
+## 🛠 Tech Stack (技术栈)
+
+* **Frontend Framework:** React 18
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Animations:** Framer Motion (Complex enter/exit animations)
+* **Build Tool:** Vite
+* **Package Manager:** npm
+
+## 🚀 Getting Started (快速开始)
+
+Follow these steps to set up the project locally on your machine.
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed.
+
+### Installation
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/simonliuliu/crypto-temple.git](https://github.com/simonliuliu/crypto-temple.git)
+    cd crypto-temple
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open in Browser**
+    Visit `http://localhost:5173` to view the application.
+
+## 📂 Project Structure (目录结构)
+
+```text
+crypto-temple/
+├── public/              # Static assets (images, icons)
+│   └── images/          # Temple assets (temple-main.png, etc.)
+├── src/
+│   ├── components/      # React components (LandingPage, DivinationModal)
+│   ├── animations/      # Framer Motion variants
+│   ├── utils/           # Helper functions (Divination logic)
+│   ├── App.tsx          # Main entry component
+│   └── main.tsx         # DOM renderer
+├── index.html           # HTML entry point
+├── tailwind.config.js   # Tailwind configuration
+└── tsconfig.json        # TypeScript configuration
