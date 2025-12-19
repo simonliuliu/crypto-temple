@@ -19,18 +19,21 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* 🔴 删除了 display: flex 和 place-items: center */
+  /* 让 body 回归正常的块级布局，占满宽度 */
+  width: 100%;
   min-width: 320px;
   min-height: 100vh;
 }
 
+/* 金色文字发光 */
 .gold-glow {
   text-shadow: 
     0 0 10px rgba(245, 158, 11, 0.5), 
     0 0 20px rgba(180, 83, 9, 0.3);
 }
 
+/* 烟雾动画 */
 .smoke {
   position: absolute;
   width: 6px;
