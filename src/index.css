@@ -3,50 +3,119 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --tao-red: #9f1239;
+  --tao-gold: #d97706;
+  --tao-bg: #0c0a09;
 }
 
 body {
   margin: 0;
-  /* 🔴 删除了 display: flex 和 place-items: center */
-  /* 让 body 回归正常的块级布局，占满宽度 */
   width: 100%;
-  min-width: 320px;
   min-height: 100vh;
+  background-color: var(--tao-bg);
+  color: #e7e5e4;
+  font-family: system-ui, -apple-system, sans-serif;
+  /* 核心修复：允许垂直滚动，只隐藏水平溢出 */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-/* 金色文字发光 */
-.gold-glow {
-  text-shadow: 
-    0 0 10px rgba(245, 158, 11, 0.5), 
-    0 0 20px rgba(180, 83, 9, 0.3);
+/* --- 核心动画 --- */
+
+@keyframes templeLand {
+  0% { transform: translateY(-100vh) scale(1.5); opacity: 0; filter: blur(10px); }
+  70% { transform: translateY(20px) scale(1); opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
-/* 烟雾动画 */
-.smoke {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  filter: blur(2px);
-  animation: smoke-rise 3s ease-out infinite;
-  opacity: 0;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
 }
 
-@keyframes smoke-rise {
+/* 灵符飘落 */
+@keyframes fall {
+  0% { transform: translateY(-50px) rotate(0deg) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+}
+.animate-fall {
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* 香烟袅袅 */
+@keyframes rise {
   0% { transform: translateY(0) scale(1); opacity: 0; }
-  20% { opacity: 0.5; }
-  100% { transform: translateY(-40px) scale(3); opacity: 0; }
+  20% { opacity: 0.4; }
+  100% { transform: translateY(-300px) scale(3); opacity: 0; }
+}
+.animate-rise {
+  animation-name: rise;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+/* --- 八卦盘旋转 --- */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-very-slow { animation: spin-slow 60s linear infinite; }
+.animate-spin-medium { animation: spin-slow 3s linear infinite; }
+
+/* --- 💰 投币相关动画 --- */
+
+@keyframes coin-drop-in {
+  0% { transform: translateY(-100px) scale(1.5) rotateY(0deg); opacity: 0; }
+  20% { opacity: 1; transform: translateY(-80px) scale(1.5) rotateY(180deg); }
+  100% { transform: translateY(20px) scale(0.5) rotateY(720deg); opacity: 0; }
+}
+.animate-coin-drop { animation: coin-drop-in 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+
+@keyframes coin-drop-center {
+  0% { transform: translateY(-300px) scale(2) rotateY(0deg); opacity: 0; }
+  20% { opacity: 1; transform: translateY(-200px) scale(2) rotateY(180deg); }
+  100% { transform: translateY(60px) scale(1) rotateY(1080deg); opacity: 0; }
+}
+.animate-coin-drop-center { animation: coin-drop-center 1.5s ease-in forwards; }
+
+@keyframes merit-float-up {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  20% { transform: translateY(-20px) scale(1.5); opacity: 1; }
+  80% { transform: translateY(-100px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-150px) scale(1); opacity: 0; }
+}
+.animate-merit-text { animation: merit-float-up 2.5s ease-out forwards; }
+
+/* ================= 🟢 经文动画修改区域 ================= */
+
+/* 1. 经文流转动画：降低透明度 */
+@keyframes scripture-flow {
+  0% { transform: translateY(-10%); opacity: 0; }
+  20% { opacity: 0.3; } /* 🟢 修改：透明度降低到 0.3 */
+  80% { opacity: 0.3; } /* 🟢 修改：透明度降低到 0.3 */
+  100% { transform: translateY(10%); opacity: 0; }
+}
+
+/* 2. 经文动画速度：加快 */
+.animate-scripture {
+  animation: scripture-flow 8s linear infinite; /* 🟢 修改：速度从 15s 加快到 8s */
+}
+
+/* ===================================================== */
+
+/* --- 工具类 --- */
+.glow-text { text-shadow: 0 0 15px rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.3); }
+.input-tao { background: rgba(0,0,0,0.3); border: 1px solid #44403c; color: #fbbf24; transition: all 0.3s; }
+.input-tao:focus { outline: none; border-color: #fbbf24; background: rgba(0,0,0,0.5); box-shadow: 0 0 0 1px #fbbf24; }
+.btn-talisman { background: linear-gradient(to right, #9f1239, #881337); color: #fce7f3; border: 1px solid #be123c; font-weight: 600; letter-spacing: 0.05em; transition: all 0.2s ease; }
+.btn-talisman:hover:not(:disabled) { filter: brightness(1.2); transform: translateY(-1px); }
+.btn-talisman:disabled { background: #292524; border-color: #44403c; color: #57534e; cursor: not-allowed; }
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.5em;
 }

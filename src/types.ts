@@ -1,4 +1,35 @@
-export const ProjectType = {
+// ==============================
+// 1. UI 动画相关类型 (新加的)
+// ==============================
+export interface Deity {
+    id: number;
+    name: string;
+    title: string;
+    side: 'left' | 'right' | 'back';
+    x: number; // Percent from center
+    y: number; // Percent from bottom
+    icon: string;
+    color: string;
+  }
+  
+  export interface DeityCardInfo {
+    id: string;
+    name: string;
+    role: string;
+    imageAlt: string;
+    color: string;
+    icon: string;
+    isLocked?: boolean;
+  }
+  
+  export type AppStage = 'ENTRANCE' | 'OPENING_GATE' | 'INNER_SANCTUM';
+  
+  // ==============================
+  // 2. 核心业务逻辑类型 (原来的)
+  // ==============================
+  
+  // 定义项目类型的常量对象 (用于逻辑判断)
+  export const ProjectType = {
     PRIMARY_MARKET: '一级市场 (土狗/Meme)',
     SECONDARY_MARKET: '二级市场 (主流币)',
     OTC: 'OTC / 场外',
@@ -7,9 +38,9 @@ export const ProjectType = {
     NFT: 'NFT 铸造'
   } as const;
   
+  // 定义项目类型的 Type (用于 TypeScript 类型检查)
   export type ProjectType = typeof ProjectType[keyof typeof ProjectType];
   
-  // 五行基础结构
   export interface FiveElements {
     gold: number;
     wood: number;
